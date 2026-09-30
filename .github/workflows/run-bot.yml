@@ -1,9 +1,9 @@
 name: Canva Style PDF Bot Runner (Every 5 Hours)
 
 on:
-  workflow_dispatch: # ম্যানুয়ালি রান করার জন্য
+  workflow_dispatch:
   schedule:
-    - cron: '0 */5 * * *' # প্রতি ৫ ঘণ্টা পর পর অ্যাকশন রান রাখবে
+    - cron: '0 */5 * * *'
 
 jobs:
   run-bot:
@@ -11,16 +11,15 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Node.js Environment
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: '18'
-          cache: 'npm'
+          node-version: '20'
 
       - name: Install Dependencies
-        run: npm ci
+        run: npm install
 
       - name: Install Puppeteer Chrome Dependencies
         run: npx puppeteer browsers install chrome
